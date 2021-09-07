@@ -76,12 +76,12 @@ const discardedNumbers = [];
 // log the element if the number is above 6 or below 0
 // else push them to the array discardedNumbers
 
-for(let i = 0; i < numbers.length; i++){
-    if(numbers[i] > 6 || numbers[i]<0){
-        console.log(numbers[i]);
-    }else{
-        discardedNumbers.push(numbers[i]);
-    }
+for (let i = 0; i < numbers.length; i++) {
+  if (numbers[i] > 6 || numbers[i] < 0) {
+    console.log(numbers[i]);
+  } else {
+    discardedNumbers.push(numbers[i]);
+  }
 }
 
 console.log(discardedNumbers);
