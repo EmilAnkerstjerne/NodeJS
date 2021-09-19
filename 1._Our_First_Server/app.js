@@ -20,4 +20,5 @@ app.get("/favoriteNumber/:param1", (req, res) => {
         nice: req.params.param1 === 69 || req.params.param1 === 420});
 });
 
+
 app.listen(3000);
