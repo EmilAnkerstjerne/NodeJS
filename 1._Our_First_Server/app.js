@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
 const cake = require("./cake.json");
-console.log(cake);
+
 
 // req = request, res = response
 app.get("/", (req, res) => {
@@ -26,6 +28,11 @@ app.get("/favoriteNumber/:param1", (req, res) => {
 
 app.get("/frontpage", (req, res) => {
     res.send({message: "Welcome back!"});
+});
+
+app.post("/messages", (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
 });
 
 
