@@ -4,6 +4,9 @@ const app = express();
 const dankMemes = [{
     topText: "Mom: We have Javascript at home",
     bottomText: "Javascript at home: Node.js"
+},{
+    topText: "Never gonna give you up,",
+    bottomText: "never gonna let you down"
 }]
 
 app.get("/dankmemes", (req, res) => {
