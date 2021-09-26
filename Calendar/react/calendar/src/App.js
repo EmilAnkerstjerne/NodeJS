@@ -7,7 +7,7 @@ function App() {
   const [month, setMonth] = useState("");
 
   const getDayFromApi = async () => {
-    fetch('http://localhost:8080/day')
+    fetch('/day')
       .then((response) => response.json())
       .then((json) => {
         setDay(json.day);
@@ -16,7 +16,7 @@ function App() {
         console.error(error);
       });
     
-    fetch('http://localhost:8080/time')
+    fetch('/time')
       .then((response) => response.json())
       .then((json) => {
         setTime(json.time);
@@ -25,7 +25,7 @@ function App() {
         console.error(error);
       });
     
-    fetch('http://localhost:8080/month')
+    fetch('/month')
       .then((response) => response.json())
       .then((json) => {
         setMonth(json.month);
