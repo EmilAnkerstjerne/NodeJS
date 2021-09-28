@@ -3,7 +3,8 @@ const app = express();
 
 app.use(express.json());
 
-const dankMemes = [
+
+let dankMemes = [
     {
         name: "Rick Astley",
         topText: "Never gonna give you up",
@@ -23,6 +24,8 @@ const dankMemes = [
         id: 3
     },
 ]
+
+let AUTO_INCREMENT = 3;
 // console.log(dankmemes.dankmemes[0]);
 
 app.get("/dankmemes", (req, res) => {
@@ -30,11 +33,14 @@ app.get("/dankmemes", (req, res) => {
 });
 
 app.get("/dankmemes/:id", (req, res) => {
-    dankMemes.forEach(meme => {
-        if (meme.id === parseInt(req.params.id)){
-            return res.send(meme);
-        }
-    });
+    res.send(dankMemes.find(meme => meme.id === Number(req.params.id)));
+});
+
+app.post("/dankmemes", (req, res) => {
+    const dankMeme = req.body;
+    dankMeme.id = ++AUTO_INCREMENT;
+    dankMemes.push(dankMeme);
+    res.send(req.body);
 });
 
 app.put("/dankmemes/:id", (req, res) => {
@@ -59,9 +65,11 @@ app.patch("/dankmemes/:id", (req, res) => {
             let toBeUpdated = dankMemes[dankMemes.indexOf(meme)]
             if(req.body.name !== null){
                 toBeUpdated.name = req.body.name;
-            }else if(req.body.topText !== null){
+            }
+            if(req.body.topText !== null){
                 toBeUpdated.topText = req.body.topText;
-            }else if(req.body.bottomText !== null){
+            }
+            if(req.body.bottomText !== null){
                 toBeUpdated.bottomText = req.body.bottomText;
             }
             updated = true;
@@ -74,35 +82,15 @@ app.patch("/dankmemes/:id", (req, res) => {
     }
 });
 
-app.post("/dankmemes", (req, res) => {
-    let alreadyExists = false;
-    dankMemes.forEach(meme => {
-        if (meme.id === req.body.id){
-            alreadyExists = true;
-        }    
-    });
-    if(!alreadyExists){
-        dankMemes.push(req.body);
-        res.sendStatus(201);
-    }else{
-        res.sendStatus(403);
-    }
-});
-
 
 app.delete("/dankmemes/:id", (req, res) => {
-    let deleted = false;
-    dankMemes.forEach(meme => {
-        if (meme.id === parseInt(req.params.id)){
-            dankMemes.splice(dankMemes.indexOf(meme), 1);
-            deleted = true;
-        }
+    let foundMemeToDelete = false;
+    dankMemes = dankMemes.filter(dankMeme => {
+        notToDelete = dankMeme.id !== Number(req.params.id);
+        if(!notToDelete) foundMemeToDelete = true;
+        return notToDelete;
     });
-    if(deleted){
-        return res.sendStatus(200);
-    }else{
-        return res.sendStatus(404);
-    }
+    foundMemeToDelete ? res.sendStatus(200) : res.sendStatus(400);
 });
 
 
