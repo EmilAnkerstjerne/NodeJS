@@ -43,6 +43,7 @@ app.post("/dankmemes", (req, res) => {
     res.send(req.body);
 });
 
+// todo rework to be without forEach
 app.put("/dankmemes/:id", (req, res) => {
     let updated = false;
     dankMemes.forEach(meme => {
@@ -59,27 +60,15 @@ app.put("/dankmemes/:id", (req, res) => {
 });
 
 app.patch("/dankmemes/:id", (req, res) => {
-    let updated = false;
-    dankMemes.forEach(meme => {
-        if (meme.id === parseInt(req.params.id)){
-            let toBeUpdated = dankMemes[dankMemes.indexOf(meme)]
-            if(req.body.name !== null){
-                toBeUpdated.name = req.body.name;
-            }
-            if(req.body.topText !== null){
-                toBeUpdated.topText = req.body.topText;
-            }
-            if(req.body.bottomText !== null){
-                toBeUpdated.bottomText = req.body.bottomText;
-            }
-            updated = true;
+    let memeToUpdate;
+    dankMemes = dankMemes.map(dankMeme => {
+        if (dankMeme.id === Number(req.params.id)){
+            memeToUpdate = {...dankMeme, ...req.body, id: dankMeme.id}
+            return memeToUpdate;
         }
+        return dankMeme
     });
-    if(updated){
-        res.sendStatus(200);
-    }else{
-        res.sendStatus(404);
-    }
+    memeToUpdate ? res.send(memeToUpdate) : res.sendStatus(404);
 });
 
 
