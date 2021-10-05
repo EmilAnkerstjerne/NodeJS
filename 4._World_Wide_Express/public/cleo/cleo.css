@@ -1,0 +1,12 @@
+body {
+    background-color: green;
+}
+#title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.fact {
+    font-size: 2em;
+}

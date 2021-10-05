@@ -1,0 +1,1 @@
+setTimeout(() => { location = "/" }, 3000);
