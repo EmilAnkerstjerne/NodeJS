@@ -1,0 +1,26 @@
+@import "navbar.css";
+
+.select-div {
+    display: inline-block;
+    width: 23%;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 30px;
+    margin: 10px;
+    margin-top: 200px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 150%;
+}
+
+p {
+    margin: 0;
+}
+
+div a {
+    text-decoration: inherit;
+    color: inherit;
+}
+.select-div:hover {
+    background-color: lightblue;
+}
