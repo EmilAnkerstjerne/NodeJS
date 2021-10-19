@@ -1,5 +1,8 @@
 const express = require("express");
+// import express from 'express';
 const app = express();
+// import fetch from 'node-fetch';
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 app.use(express.static("public"));
 
@@ -21,6 +24,16 @@ app.get("/creditor", (req, res) => {
 
 app.get("/sausage/:money", (req, res) => {
     req.params.money < 25 ? res.redirect("/creditor") : res.send({ sausage: "Indianer i svøb" }); 
+});
+
+app.get("/proxy", async (req, res) => {
+    // fetch("https://google.com")
+    // .then(response => response.text())
+    // .then(data => res.send(data));
+
+    const response = await fetch("https://google.com");
+    const result = await response.text();
+    res.send(result);
 });
 
 const PORT = process.env.PORT || 8080;
