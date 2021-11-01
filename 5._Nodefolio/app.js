@@ -3,24 +3,24 @@ const app = express();
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/frontpage/frontpage.html");
-});
+const fs = require("fs");
+const navbar = fs.readFileSync("./public/components/nav/navbar.html").toString();
+const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
 
-app.get("/cv", (req, res) => {
-    res.sendFile(__dirname + "/public/cv/cv.html");
+const frontpage = fs.readFileSync("./public/pages/frontpage/frontpage.html").toString();
+const projects = fs.readFileSync("./public/pages/projects/projects.html").toString();
+
+
+const projectsRouter = require("./routers/projects.js");
+app.use(projectsRouter.router);
+
+app.get("/", (req, res) => {
+    res.send(navbar + frontpage + footer);
 });
 
 app.get("/projects", (req, res) => {
-    res.sendFile(__dirname + "/public/projects/projects.html");
+    res.send(navbar + projects + footer);
 });
-
-app.get("/contact", (req, res) => {
-    res.sendFile(__dirname + "/public/contact/contact.html");
-});
-
-
-
 
 const PORT = process.env.PORT || 8080;
 
