@@ -1,0 +1,27 @@
+    <link rel="stylesheet" href="/pages/contact/contact.css"> 
+    <h1>Here you can find all contact information on me.</h1>
+
+        <form action="/api/contact" method="POST">
+            <label for="nameInput">Name</label>
+            <br>
+            <input name="nameInput" id="nameInput" type="text" placeholder="Name" value="Emil">
+            <br>
+            <label for="emailInput">Email</label>
+            <br>
+            <input name="emailInput" id="emailInput" type="email" placeholder="Email" value="Emil@gmail.com">
+            <br>
+            <label for="phone">Phone No.</label>
+            <br>
+            <input name="phoneInput" id="phoneInput" type="tel" placeholder="Phone No." value="11223344">
+            <br>
+            <label for="messageInput">Message</label>
+            <br>
+            <textarea name="messageInput" id="" cols="30" rows="10" placeholder="Write your message here...">message</textarea>
+            <br>
+            <br>
+            <button type="submit">Contact me!</button>
+        </form>
+    
+    <script>
+        document.getElementById("contact").className = "active";
+    </script>

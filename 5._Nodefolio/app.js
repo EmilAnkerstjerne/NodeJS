@@ -2,25 +2,45 @@ const express = require("express");
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
-const fs = require("fs");
-const navbar = fs.readFileSync("./public/components/nav/navbar.html").toString();
-const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
+const { createPage } = require("./render.js");
 
-const frontpage = fs.readFileSync("./public/pages/frontpage/frontpage.html").toString();
-const projects = fs.readFileSync("./public/pages/projects/projects.html").toString();
-
+// Ready the pages
+const frontpagePage = createPage("frontpage/frontpage.html", { title: "Nodefolio | Welcome" });
+const cvPage = createPage("cv/cv.html");
+const projectsPage = createPage("projects/projects.html");
+const contactPage = createPage("contact/contact.html");
 
 const projectsRouter = require("./routers/projects.js");
 app.use(projectsRouter.router);
 
+const pageRouter = require("./routers/pages.js");
+app.use(pageRouter.router);
+
+const contactRouter = require("./routers/contact.js");
+const { urlencoded } = require("express");
+app.use(contactRouter.router);
+
+
 app.get("/", (req, res) => {
-    res.send(navbar + frontpage + footer);
+    res.send(frontpagePage);
+});
+
+app.get("/cv", (req, res) => {
+    res.send(cvPage);
 });
 
 app.get("/projects", (req, res) => {
-    res.send(navbar + projects + footer);
+    res.send(projectsPage);
 });
+
+app.get("/contact", (req, res) => {
+    res.send(contactPage);
+});
+
+
 
 const PORT = process.env.PORT || 8080;
 
