@@ -15,18 +15,22 @@ router.post("/api/contact", async (req, res) => {
     let info = await transporter.sendMail({
         from: '"Emils portfolio" <emilankerstjerne.portfolio@gmail.com>', // sender address
         to: "emil.ankerstjerne@gmail.com", // list of receivers
-        subject: `New Message from ${req.body.nameInput}, portfolio`, // Subject line
+        subject: `New Message from ${req.body.name}, portfolio`, // Subject line
         text: 
         `
-        Name: ${req.body.nameInput}\n
-        Email: ${req.body.emailInput}\n
-        Phone No.: ${req.body.phoneInput}\n
+        Name: ${req.body.name}\n
+        Email: ${req.body.email}\n
+        Phone No.: ${req.body.phone}\n
         Message:\n
-        ${req.body.messageInput}`
+        ${req.body.message}`
+      }, (error, result) => {
+        if(error){
+          console.log(error)
+          return res.sendStatus(400);
+        }else{
+          res.sendStatus(200);
+        }
       });
-
-
-    res.redirect("/contact");
 });
 
 module.exports = {
