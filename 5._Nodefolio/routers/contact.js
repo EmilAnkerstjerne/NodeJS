@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const nodemailer = require("nodemailer");
+// const router = require("express").Router();
+// const nodemailer = require("nodemailer");
+import express from "express";
+const router = express.Router();
 
 router.post("/api/contact", async (req, res) => {
     let transporter = nodemailer.createTransport({
@@ -33,6 +35,10 @@ router.post("/api/contact", async (req, res) => {
       });
 });
 
-module.exports = {
-    router
+// module.exports = {
+//     router
+// }
+
+export default {
+  router
 }
