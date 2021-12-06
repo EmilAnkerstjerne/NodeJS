@@ -15,6 +15,9 @@ const frontpagePage = createPage("frontpage/frontpage.html", { title: "Nodefolio
 const cvPage = createPage("cv/cv.html");
 const projectsPage = createPage("projects/projects.html");
 const contactPage = createPage("contact/contact.html");
+const dashboardPage = createPage("dashboard/dashboard.html");
+const addProjectPage = createPage("addProject/addProject.html");
+
 
 // const projectsRouter = require("./routers/projects.js");
 import projectsRouter from "./routers/projects.js";
@@ -44,6 +47,19 @@ app.get("/projects", (req, res) => {
 
 app.get("/contact", (req, res) => {
     res.send(contactPage);
+});
+
+app.get("/admin/dashboard", (req, res) => {
+    res.send(dashboardPage);
+});
+
+app.get("/admin/dashboard/addproject", (req, res) => {
+    res.send(addProjectPage);
+});
+
+app.get("/admin/dashboard/editproject/:id", (req, res) => {
+    const editProjectPage = createPage("editProject/editProject.html", {projectId: req.params.id});
+    res.send(editProjectPage);
 });
 
 

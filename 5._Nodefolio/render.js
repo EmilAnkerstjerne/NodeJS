@@ -6,7 +6,8 @@ const footer = fs.readFileSync("./public/components/footer/footer.html").toStrin
 
 export function createPage(path, options){
     return (navbar + fs.readFileSync(`./public/pages/${path}`).toString() + footer)
-            .replace("%%DOCUMENT_TITLE%%", options?.title || "Nodefolio");
+            .replace("%%DOCUMENT_TITLE%%", options?.title || "Nodefolio")
+            .replace("%%PROJECT_ID%%", options?.projectId || "");
 }
 
 // module.exports = {

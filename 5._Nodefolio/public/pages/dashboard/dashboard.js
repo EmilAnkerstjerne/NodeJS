@@ -6,7 +6,7 @@ let categories = [];
 fetch("/api/projects/")
 .then(response => response.json())
 .then(({ projects }) => {
-    
+
     let j = 0;
 
     projects.map(project => {
@@ -43,7 +43,6 @@ fetch("/api/projects/")
         const categoryDiv = document.getElementById(project.category);
         const projectDiv = document.createElement("div");
         projectDiv.className = "projectDiv";
-        projectDiv.id = project.id;
         
         projectDiv.innerHTML = `
             <h3>${escapeHTML(project.name)}</h3>
@@ -52,11 +51,46 @@ fetch("/api/projects/")
             <p>Technologies: <strong>${escapeHTML(project.technologies)}</strong></p>
             <p>Description: <strong>${escapeHTML(project.description)}</strong></p>
             <p><strong><a href="${escapeHTML(project.githubLink)}" target="_blank">GitHub</a></strong></p>
-            <p>${(project.deployedLink) ? `<strong><a href=\"${escapeHTML(project.deployedLink)}\" target=\"_blank\">Deployed</a>` : "Project is not deployed"}</p>
+            <p>${(project.deployedLink) ? `<strong><a href=\"${escapeHTML(project.deployedLink)}\" target=\"_blank\">Deployed</a>` : "Project is not deployed"}</p> 
         `;
+
+        
+
+        const editButton = document.createElement("button");
+        editButton.className = "dashboard-button";
+        editButton.innerHTML = "Edit";
+        editButton.type = "button";
+        editButton.id = "edit-button"
+        editButton.addEventListener("click", () => {
+            window.location.assign(`/admin/dashboard/editproject/${project.id}`);
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "dashboard-button";
+        deleteButton.innerHTML = "Delete";
+        deleteButton.type = "button";
+        deleteButton.id = "delete-button"
+        deleteButton.addEventListener("click", () => {
+            if (confirm(`Do you want to delete ${project.name}?`)){
+                fetch(`/api/projects/${project.id}`, {
+                    method: "DELETE"
+                });
+                projectDiv.style.display = "none";
+            };
+
+        });
+        projectDiv.appendChild(editButton);
+        projectDiv.appendChild(deleteButton);
+
+        
         
         categoryDiv.appendChild(projectDiv);
 
     });
 
+});
+
+
+document.getElementById("addProjectButton").addEventListener("click", () => {
+    window.location.assign("/admin/dashboard/addproject"); 
 });
