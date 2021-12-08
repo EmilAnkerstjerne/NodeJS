@@ -1,4 +1,3 @@
-// const fs = require("fs");
 import fs from "fs";
 
 const navbar = fs.readFileSync("./public/components/nav/navbar.html").toString();
@@ -13,7 +12,3 @@ export function createPage(path, options){
 export function createPageNoNav(path, options){
     return fs.readFileSync(`./public/pages/${path}`).toString();
 }
-
-// module.exports = {
-//     createPage
-// };
