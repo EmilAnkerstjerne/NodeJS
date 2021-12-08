@@ -1,5 +1,5 @@
 ## Running the project
-To run the project in development mode use ***'npm run start-dev'***.  
+To run the project in development mode use '***npm run start-dev***'.  
 This will run the project with Nodemon
 
 ## Adminpage
@@ -9,4 +9,4 @@ Username: *emil*
 Password: *123*  
 
 ## Create new admin user
-To create admin user use ***'npm run create-admin'***.  
+To create admin user use '***npm run create-admin***'.  
