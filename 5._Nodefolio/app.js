@@ -1,5 +1,3 @@
-// const express = require("express");
-// const app = express();
 import express from "express";
 const app = express();
 
@@ -7,7 +5,6 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-// const { createPage } = require("./render.js");
 import { createPage } from "./render.js";
 import { createPageNoNav } from "./render.js";
 
@@ -38,18 +35,13 @@ const addProjectPage = createPage("addProject/addProject.html");
 const loginPage = createPageNoNav("login/login.html");
 
 
-
-// const projectsRouter = require("./routers/projects.js");
 import projectsRouter from "./routers/projects.js";
 app.use(projectsRouter.router);
 
 import loginRouter from "./routers/login.js";
 app.use(loginRouter.router);
 
-
-// const contactRouter = require("./routers/contact.js");
 import contactRouter from "./routers/contact.js";
-// const { urlencoded } = require("express");
 app.use(contactRouter.router);
 
 

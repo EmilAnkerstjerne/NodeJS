@@ -1,5 +1,3 @@
-// const router = require("express").Router();
-// const nodemailer = require("nodemailer");
 import express from "express";
 const router = express.Router();
 
@@ -7,7 +5,7 @@ router.post("/api/contact", async (req, res) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false, // true for 465, false for other ports
+        secure: false,
         auth: {
           user: "emilankerstjerne.portfolio@gmail.com",
           pass: "emil1234!"
@@ -15,9 +13,9 @@ router.post("/api/contact", async (req, res) => {
     });
 
     let info = await transporter.sendMail({
-        from: '"Emils portfolio" <emilankerstjerne.portfolio@gmail.com>', // sender address
-        to: "emil.ankerstjerne@gmail.com", // list of receivers
-        subject: `New Message from ${req.body.name}, portfolio`, // Subject line
+        from: '"Emils portfolio" <emilankerstjerne.portfolio@gmail.com>',
+        to: "emil.ankerstjerne@gmail.com",
+        subject: `New Message from ${req.body.name}, portfolio`,
         text: 
         `
         Name: ${req.body.name}\n
@@ -34,10 +32,6 @@ router.post("/api/contact", async (req, res) => {
         }
       });
 });
-
-// module.exports = {
-//     router
-// }
 
 export default {
   router
