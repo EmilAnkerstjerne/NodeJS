@@ -5,11 +5,8 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-import { createPage } from "./render.js";
-import { createPageNoNav } from "./render.js";
 
-
-
+// Import session and setup authorization function
 import session from "express-session";
 app.use(session({
     secret: 'keyboard cat',
@@ -25,7 +22,10 @@ function isAuthorized(req, res, next){
     next();
 }
 
-// Ready the pages
+// Import and ready the pages with rendering engine
+import { createPage } from "./render.js";
+import { createPageNoNav } from "./render.js";
+
 const frontpagePage = createPage("frontpage/frontpage.html", { title: "Nodefolio | Welcome" });
 const cvPage = createPage("cv/cv.html");
 const projectsPage = createPage("projects/projects.html");
@@ -35,6 +35,7 @@ const addProjectPage = createPage("addProject/addProject.html");
 const loginPage = createPageNoNav("login/login.html");
 
 
+// Routers
 import projectsRouter from "./routers/projects.js";
 app.use(projectsRouter.router);
 
@@ -45,6 +46,7 @@ import contactRouter from "./routers/contact.js";
 app.use(contactRouter.router);
 
 
+// Endpoints
 app.get("/", (req, res) => {
     res.send(frontpagePage);
 });
@@ -75,7 +77,6 @@ app.get("/admin/dashboard/editproject/:id", isAuthorized, (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-    console.log(req.session.isAuthorized);
     if(req.session.isAuthorized) return res.redirect("/admin/dashboard");
     res.send(loginPage);
 });

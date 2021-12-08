@@ -1,18 +1,25 @@
 import { connection } from "./database/connectSqlite.js";
 import { hashPassword } from "./util/encryption.js";
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
-// This File is for the developer to create an admin login.
-// Fill the username and password below and run the file with 'node createAdminUser.js'
-// Leave empty before pushing to GitHub
-
-// For testing purposes: username = emil, password = 123
-
-const username = "";
-const password = "";
-
-async function createAdminUser(){
-    await connection.run(`INSERT INTO admin (username, password) VALUES (?, ?)`, [username, await hashPassword(password)]);
-}
-
-setTimeout(createAdminUser, 1000);
+const inquirer = require('inquirer');
+inquirer
+  .prompt([
+    {
+        type: 'input',
+        name: 'username',
+        message: "Username: ",
+    },
+    {
+        type: 'password',
+        name: 'password',
+        message: "Password: ",
+    }
+  ])
+  .then(async (answers) => {
+    console.log(answers);
+    await connection.run(`INSERT INTO admin (username, password) VALUES (?, ?)`, 
+    [answers.username, await hashPassword(answers.password)]);
+  });
 

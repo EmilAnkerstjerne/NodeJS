@@ -1,3 +1,8 @@
 ## Adminpage
-To access adminpage go to http://localhost:8080/admin/dashboard
-This page will be locked behind a login in a future update.
+To access adminpage go to http://localhost:8080/admin
+For testing:
+Username: emil
+Password: 123
+
+## Create new admin user
+To create admin user: npm run create-admin
