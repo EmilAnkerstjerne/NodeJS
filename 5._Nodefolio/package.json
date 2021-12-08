@@ -16,7 +16,9 @@
   "author": "Emil Ankerstjerne",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "nodemailer": "^6.7.1",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2"

@@ -1,0 +1,35 @@
+Relational dbs
+===========================
+MySQL
+MariaDB
+PostgreSQL
+
+In-memory: H2
+Embedded: SQLite
+
+
+NoSQL
+===========================
+
+Hybrid
+______
+ArangoDB
+DB2
+
+Document
+________
+MongoDB
+Firebase
+
+Object
+______
+Realm 
+
+Graph
+______
+Neo4J
+
+Cache
+______
+Redis
+

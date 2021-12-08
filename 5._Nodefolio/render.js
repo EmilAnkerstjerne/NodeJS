@@ -10,6 +10,10 @@ export function createPage(path, options){
             .replace("%%PROJECT_ID%%", options?.projectId || "");
 }
 
+export function createPageNoNav(path, options){
+    return fs.readFileSync(`./public/pages/${path}`).toString();
+}
+
 // module.exports = {
 //     createPage
 // };

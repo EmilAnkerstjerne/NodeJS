@@ -23,6 +23,7 @@ router.get("/api/projects", async (req, res) => {
 
 router.get("/api/projects/:id", async (req, res) => {
     const project = await connection.all(`SELECT * from projects WHERE id=${req.params.id}`);
+    console.log(project.id);
     res.send({ project });
 });
 

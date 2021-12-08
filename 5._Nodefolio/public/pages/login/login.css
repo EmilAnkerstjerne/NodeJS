@@ -1,0 +1,31 @@
+@import "../addProject/addProject.css";
+
+input {
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    display: block;
+    
+}
+
+label {
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    display: block;
+}
+
+button {
+    margin: auto;
+    width: 15%;
+    padding: 10px;
+    display: block;
+}
+
+#content-wrapper {
+    margin-top: 200px;
+}
+
+button:hover{
+    background-color: #111;
+}

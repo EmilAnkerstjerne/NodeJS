@@ -1,0 +1,7 @@
+{
+    "type": "module",
+    "dependencies": {
+        "mongodb": "^4.2.1",
+        "nodemon": "^2.0.15"
+    }
+}

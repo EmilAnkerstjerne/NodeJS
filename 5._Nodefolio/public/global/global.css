@@ -1,6 +1,7 @@
 main {
     min-height: calc(100vh - 180px);
     border-bottom: 2px solid black;
+    margin: 10px;
 }
 
 body {

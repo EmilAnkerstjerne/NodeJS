@@ -1,0 +1,13 @@
+MySQL <-----------> MongoDb
+Tables              Collections
+Row                 Document
+Cell                key-value pair
+
+SELECT              find
+INSERT              insert
+UPDATE              update/updateOne/updateMany
+DELETE              deleteOne/deleteMay/remove
+
+create a new collection called fishfriends
+add some fishfriends
+now experiment with full CRUD
